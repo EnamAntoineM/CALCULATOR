@@ -12,7 +12,7 @@ NAME    = MYPWD                                             # Executable name
 CC      = g++                                                # Compiler (changed from clang to g++)
 CFLAGS  = -Wall -Wextra -Werror -I./include -Wno-error       # Compiler flags
 HEADERS = $(shell find -name '*.h')                          # Dynamically find all header files
-LDFLAGS = -lcsfml-graphics -lcsfml-window -lcsfml-system -lcsfml-audio -lm # Linker flags
+LDFLAGS = -lm # Linker flags
 
 # Default target
 all: $(NAME)

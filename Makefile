@@ -31,7 +31,7 @@ SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
 
 # Name of the executable
-TARGET = $(TARGET_DIR)/app
+TARGET = $(TARGET_DIR)/calculator
 
 # MOC processing for Qt
 MOC = moc

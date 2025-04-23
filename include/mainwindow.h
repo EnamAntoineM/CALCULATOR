@@ -9,62 +9,7 @@
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include "my.h"
-#include <QMainWindow>
-#include <QPushButton>
-#include <QVBoxLayout>
-#include <QDebug>
-#include <QApplication>
-#include <QWidget>
-#include <QLabel>
-#include <QLineEdit>
-#include <QComboBox>
-#include <QCheckBox>
-#include <QRadioButton>
-#include <QSpinBox>
-#include <QSlider>
-#include <QProgressBar>
-#include <QDateEdit>
-#include <QTimeEdit>
-#include <QDateTimeEdit>
-#include <QFontDialog>
-#include <QColorDialog>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QInputDialog>
-#include <QTableWidget>
-#include <QTreeWidget>
-#include <QTabWidget>
-#include <QStackedWidget>
-#include <QToolBar>
-#include <QStatusBar>
-#include <QMenuBar>
-#include <QMenu>
-#include <QAction>
-#include <QShortcut>
-#include <QKeySequence>
-#include <QTimer>
-#include <QScreen>
-#include <QPixmap>
-#include <QImage>
-#include <QPainter>
-#include <QBrush>
-#include <QPen>
-#include <QFont>
-#include <QPalette>
-#include <QStyle>
-#include <QStyleOption>
-#include <QStyleFactory>
-#include <QApplication>
-#include <QClipboard>
-#include <QMimeData>
-
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
+    #include "my.h"
 
 class MainWindow : public QMainWindow
 {
@@ -74,9 +19,56 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_btnOk_Clicked();
-    void on_btnCancel_Clicked();
+private:
+    QLineEdit *tline1;
+    QLineEdit *tline2;
+    QString text1;
+    QString text2;
+    QVBoxLayout *primary;
+    QHBoxLayout *h1;
+    QGridLayout *g;
 
+    /////////////////////////FOR H2////////////////////////////////
+        QPushButton *AC;
+        QPushButton *open_bracket;
+        QPushButton *closing_bracket;
+        QPushButton *PI;
+        QPushButton *backspace;
+        QPushButton *squared;
+        QPushButton *squrt;
+        QPushButton *sine;
+        QPushButton *cosine;
+        QPushButton *divide;
+        QPushButton *seven;
+        QPushButton *eight;
+        QPushButton *nine;
+        QPushButton *six;
+        QPushButton *five;
+        QPushButton *four;
+        QPushButton *three;
+        QPushButton *two;
+        QPushButton *one;
+        QPushButton *zero;
+        QPushButton *multiply;
+        QPushButton *substract;
+        QPushButton *add;
+        QPushButton *calculate;
+        QPushButton *dot;
+        QPushButton *modulus;
+        QPushButton *loga;
+        QPushButton *ln;
+        QPushButton *exponent;
+        QPushButton *e;
+    //////////////////////////////////////////////////////////////
+
+    QPlainTextEdit *result;
+    void setg(void);
+    void allow_full_expand_for_QPBTN(void);
+    void initialize_btn(void);
+    void set_rounded_edge(void);
+
+private slots:
+    //void on_btnOk_Clicked();
+    //void on_btnCancel_Clicked();
 };
 #endif // MAINWINDOW_H

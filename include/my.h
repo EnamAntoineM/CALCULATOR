@@ -11,4 +11,5 @@
     #define MY_H
     #include "cpp.h"
     #include "alias.h"
+    #include "qt.h"
 #endif

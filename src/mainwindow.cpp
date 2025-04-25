@@ -56,26 +56,40 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     QWidget *centralWidget = new QWidget(this);
-    setCentralWidget(centralWidget);
-    resize(420, 350);
-
     primary = new QVBoxLayout(centralWidget);
     h1 = new QHBoxLayout();
     g = new QGridLayout();
-    result = new QPlainTextEdit();
+    calculation = new QLineEdit();
+    result = new QLineEdit();
+    res_cal = new QHBoxLayout();
+
+    QString qlineedit = "QLineEdit {"
+    "border: 2px solid #8f8f91;" // Border color
+    "border-radius: 10px;"       // Rounded corners (10px radius)
+    "font-size: 18pt;"
+    "background-color: #FFFFFF;" // Button background color
+    "}";
+    
+    calculation -> setStyleSheet(qlineedit);
+    result -> setStyleSheet(qlineedit);
+
+    setCentralWidget(centralWidget);
+    resize(492, 848);
     result -> setReadOnly(true);
-    primary -> addWidget(result);
     initialize_btn();
     set_rounded_edge();
     setg();
-    allow_full_expand_for_QPBTN();
+    allow_full_expand();
 
+    res_cal -> addWidget(calculation);
+    res_cal -> addWidget(result);
+    primary -> addLayout(res_cal);
     primary -> addLayout(h1);
     primary -> addLayout(g);
     // Set the layout to the central widget
     centralWidget->setLayout(primary);
     // Connect signals to slots
-    // connect(btnOk, &QPushButton::clicked, this, &MainWindow::on_btnOk_Clicked);
+    setupConnections();
 }
 
 void MainWindow::set_rounded_edge(void)
@@ -83,8 +97,9 @@ void MainWindow::set_rounded_edge(void)
     QString buttonStyle = "QPushButton {"
     "border: 2px solid #8f8f91;" // Border color
     "border-radius: 10px;"       // Rounded corners (10px radius)
+    "font-size: 18pt;"
     "padding: 5px;"              // Padding inside the button
-    "background-color: #f0f0f0;" // Button background color
+    "background-color: #FFFFFF" // Button background color
     "}";
 
     AC->setStyleSheet(buttonStyle);
@@ -195,7 +210,7 @@ void MainWindow::setg(void)
     g -> addWidget(calculate, 5, 4);
 }
 
-void MainWindow::allow_full_expand_for_QPBTN(void)
+void MainWindow::allow_full_expand(void)
 {
     seven->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     eight->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -227,9 +242,218 @@ void MainWindow::allow_full_expand_for_QPBTN(void)
     ln->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     exponent->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     e->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    calculation->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    calculation->setMaximumHeight(400);
+    result->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    result->setMaximumHeight(400);
+    result->setMaximumWidth(250);
+    calculation -> setAlignment(Qt::AlignCenter);
+    result -> setAlignment(Qt::AlignCenter);
 }
 
-MainWindow::~MainWindow()
+void MainWindow::setupConnections(void)
 {
-    // No need to delete child widgets manually; Qt handles it
+    connect(AC, &QPushButton::clicked, this, &MainWindow::on_AC_clicked);
+    connect(open_bracket, &QPushButton::clicked, this, &MainWindow::on_open_bracket_clicked);
+    connect(closing_bracket, &QPushButton::clicked, this, &MainWindow::on_closing_bracket_clicked);
+    connect(PI, &QPushButton::clicked, this, &MainWindow::on_PI_clicked);
+    connect(backspace, &QPushButton::clicked, this, &MainWindow::on_backspace_clicked);
+    connect(squared, &QPushButton::clicked, this, &MainWindow::on_squared_clicked);
+    connect(squrt, &QPushButton::clicked, this, &MainWindow::on_squrt_clicked);
+    connect(sine, &QPushButton::clicked, this, &MainWindow::on_sine_clicked);
+    connect(cosine, &QPushButton::clicked, this, &MainWindow::on_cosine_clicked);
+    connect(divide, &QPushButton::clicked, this, &MainWindow::on_divide_clicked);
+    connect(seven, &QPushButton::clicked, this, &MainWindow::on_seven_clicked);
+    connect(eight, &QPushButton::clicked, this, &MainWindow::on_eight_clicked);
+    connect(nine, &QPushButton::clicked, this, &MainWindow::on_nine_clicked);
+    connect(six, &QPushButton::clicked, this, &MainWindow::on_six_clicked);
+    connect(five, &QPushButton::clicked, this, &MainWindow::on_five_clicked);
+    connect(four, &QPushButton::clicked, this, &MainWindow::on_four_clicked);
+    connect(three, &QPushButton::clicked, this, &MainWindow::on_three_clicked);
+    connect(two, &QPushButton::clicked, this, &MainWindow::on_two_clicked);
+    connect(one, &QPushButton::clicked, this, &MainWindow::on_one_clicked);
+    connect(zero, &QPushButton::clicked, this, &MainWindow::on_zero_clicked);
+    connect(multiply, &QPushButton::clicked, this, &MainWindow::on_multiply_clicked);
+    connect(substract, &QPushButton::clicked, this, &MainWindow::on_substract_clicked);
+    connect(add, &QPushButton::clicked, this, &MainWindow::on_add_clicked);
+    connect(calculate, &QPushButton::clicked, this, &MainWindow::on_calculate_clicked);
+    connect(dot, &QPushButton::clicked, this, &MainWindow::on_dot_clicked);
+    connect(modulus, &QPushButton::clicked, this, &MainWindow::on_modulus_clicked);
+    connect(loga, &QPushButton::clicked, this, &MainWindow::on_loga_clicked);
+    connect(ln, &QPushButton::clicked, this, &MainWindow::on_ln_clicked);
+    connect(exponent, &QPushButton::clicked, this, &MainWindow::on_exponent_clicked);
+    connect(e, &QPushButton::clicked, this, &MainWindow::on_e_clicked);
 }
+
+void MainWindow::on_zero_clicked(void)
+{
+    calculation -> insert("0");
+}
+
+void MainWindow::on_one_clicked(void)
+{
+    calculation -> insert("1");
+}
+
+void MainWindow::on_two_clicked(void)
+{
+    calculation -> insert("2");
+}
+
+void MainWindow::on_three_clicked(void)
+{
+    calculation -> insert("3");
+}
+
+void MainWindow::on_four_clicked(void)
+{
+    calculation -> insert("4");
+}
+
+void MainWindow::on_five_clicked(void)
+{
+    calculation -> insert("5");
+}
+
+void MainWindow::on_six_clicked(void)
+{
+    calculation -> insert("6");
+}
+
+void MainWindow::on_seven_clicked(void)
+{
+    calculation -> insert("7");
+}
+
+void MainWindow::on_eight_clicked(void)
+{
+    calculation -> insert("8");
+}
+
+void MainWindow::on_nine_clicked(void)
+{
+    calculation -> insert("9");
+}
+
+void MainWindow::on_add_clicked(void)
+{
+    calculation -> insert("+");
+}
+
+void MainWindow::on_substract_clicked(void)
+{
+    calculation -> insert("-");
+}
+
+void MainWindow::on_multiply_clicked(void)
+{
+    calculation -> insert("*");
+}
+
+void MainWindow::on_divide_clicked(void)
+{
+    calculation -> insert("/");
+}
+
+void MainWindow::on_dot_clicked(void)
+{
+    calculation -> insert(".");
+}
+
+void MainWindow::on_modulus_clicked(void)
+{
+    calculation -> insert("%");
+}
+
+void MainWindow::on_exponent_clicked(void)
+{
+    calculation -> insert("^");
+}
+
+void MainWindow::on_open_bracket_clicked(void)
+{
+    calculation -> insert("(");
+}
+
+void MainWindow::on_closing_bracket_clicked(void)
+{
+    calculation -> insert(")");
+}
+
+void MainWindow::on_PI_clicked(void)
+{
+    calculation -> insert("π");
+}
+
+void MainWindow::on_e_clicked(void)
+{
+    calculation -> insert("e");
+}
+
+void MainWindow::on_loga_clicked(void)
+{
+    calculation -> insert("log");
+}
+
+void MainWindow::on_ln_clicked(void)
+{
+    calculation -> insert("ln");
+}
+
+void MainWindow::on_sine_clicked(void)
+{
+    calculation -> insert("sin");
+}
+
+void MainWindow::on_cosine_clicked(void)
+{
+    calculation -> insert("cos");
+}
+
+void MainWindow::on_squared_clicked(void)
+{
+    calculation -> insert("²");
+}
+
+void MainWindow::on_squrt_clicked(void)
+{
+    calculation -> insert("√");
+}
+
+void MainWindow::on_AC_clicked(void)
+{
+    calculation -> clear();
+}
+
+void MainWindow::on_calculate_clicked(void)
+{
+    to_calculate = calculation -> text();
+    //Handling of particular cases
+    to_calculate.replace("π", QString::number(M_PI));
+    to_calculate.replace("e", QString::number(M_E));
+    to_calculate.replace("sin", "Math.sin");
+    to_calculate.replace("cos", "Math.cos");
+    to_calculate.replace("log", "Math.log10");
+    to_calculate.replace("ln", "Math.log");
+    to_calculate.replace("√", "Math.sqrt");
+    output = engine.evaluate(to_calculate);
+    to_display = QString::number(output.toNumber());
+
+    if (!output.isError()) {
+        result -> setText(to_display);
+    } else {
+        result -> setText("Try again !!");
+    }
+}
+
+void MainWindow::on_backspace_clicked(void)
+{
+    to_calculate = calculation -> text();
+    std::string operated = to_calculate.toStdString();
+    if (!operated.empty())
+        operated.pop_back();
+        to_calculate = QString::fromStdString(operated);
+        calculation -> setText(to_calculate);
+}
+
+MainWindow::~MainWindow() {}

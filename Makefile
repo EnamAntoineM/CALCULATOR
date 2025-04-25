@@ -13,8 +13,8 @@
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -I./include $(shell pkg-config --cflags Qt5Core Qt5Widgets Qt5Gui)
-LDFLAGS = $(shell pkg-config --libs Qt5Core Qt5Widgets Qt5Gui)
+CXXFLAGS = -I./include $(shell pkg-config --cflags Qt5Core Qt5Widgets Qt5Gui Qt5Qml)
+LDFLAGS = $(shell pkg-config --libs Qt5Core Qt5Widgets Qt5Gui Qt5Qml)
 
 # Directories
 SRC_DIR = src

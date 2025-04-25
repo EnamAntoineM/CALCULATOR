@@ -20,11 +20,14 @@ public:
     ~MainWindow();
 
 private:
-    QLineEdit *tline1;
-    QLineEdit *tline2;
-    QString text1;
-    QString text2;
+    QLineEdit *calculation;
+    QString to_calculate;
+    QString to_display;
+    QJSValue output;
+    QJSEngine engine;
+    QLineEdit *result;
     QVBoxLayout *primary;
+    QHBoxLayout *res_cal;
     QHBoxLayout *h1;
     QGridLayout *g;
 
@@ -60,15 +63,42 @@ private:
         QPushButton *exponent;
         QPushButton *e;
     //////////////////////////////////////////////////////////////
-
-    QPlainTextEdit *result;
     void setg(void);
-    void allow_full_expand_for_QPBTN(void);
+    void allow_full_expand(void);
     void initialize_btn(void);
     void set_rounded_edge(void);
+    void setupConnections(void);
 
 private slots:
-    //void on_btnOk_Clicked();
-    //void on_btnCancel_Clicked();
+    void on_AC_clicked();
+    void on_open_bracket_clicked();
+    void on_closing_bracket_clicked();
+    void on_PI_clicked();
+    void on_backspace_clicked();
+    void on_squared_clicked();
+    void on_squrt_clicked();
+    void on_sine_clicked();
+    void on_cosine_clicked();
+    void on_divide_clicked();
+    void on_seven_clicked();
+    void on_eight_clicked();
+    void on_nine_clicked();
+    void on_six_clicked();
+    void on_five_clicked();
+    void on_four_clicked();
+    void on_three_clicked();
+    void on_two_clicked();
+    void on_one_clicked();
+    void on_zero_clicked();
+    void on_multiply_clicked();
+    void on_substract_clicked();
+    void on_add_clicked();
+    void on_calculate_clicked();
+    void on_dot_clicked();
+    void on_modulus_clicked();
+    void on_loga_clicked();
+    void on_ln_clicked();
+    void on_exponent_clicked();
+    void on_e_clicked();
 };
 #endif // MAINWINDOW_H

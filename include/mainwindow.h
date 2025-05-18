@@ -28,8 +28,10 @@ private:
     QLineEdit *result;
     QVBoxLayout *primary;
     QHBoxLayout *res_cal;
-    QHBoxLayout *h1;
-    QGridLayout *g;
+    QHBoxLayout *h;
+    QGridLayout *g1;
+    QGridLayout *g2;
+    QGridLayout *g3;
 
     /////////////////////////FOR H2////////////////////////////////
         QPushButton *AC;
@@ -37,7 +39,6 @@ private:
         QPushButton *closing_bracket;
         QPushButton *PI;
         QPushButton *backspace;
-        QPushButton *squared;
         QPushButton *squrt;
         QPushButton *sine;
         QPushButton *cosine;
@@ -58,10 +59,7 @@ private:
         QPushButton *calculate;
         QPushButton *dot;
         QPushButton *modulus;
-        QPushButton *loga;
-        QPushButton *ln;
         QPushButton *exponent;
-        QPushButton *e;
     //////////////////////////////////////////////////////////////
     void setg(void);
     void allow_full_expand(void);
@@ -75,7 +73,6 @@ private slots:
     void on_closing_bracket_clicked();
     void on_PI_clicked();
     void on_backspace_clicked();
-    void on_squared_clicked();
     void on_squrt_clicked();
     void on_sine_clicked();
     void on_cosine_clicked();
@@ -96,9 +93,6 @@ private slots:
     void on_calculate_clicked();
     void on_dot_clicked();
     void on_modulus_clicked();
-    void on_loga_clicked();
-    void on_ln_clicked();
     void on_exponent_clicked();
-    void on_e_clicked();
 };
 #endif // MAINWINDOW_H

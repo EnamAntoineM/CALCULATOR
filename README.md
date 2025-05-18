@@ -27,6 +27,8 @@ A simple calculator application built with C++ and Qt, featuring a custom UI and
    ```bash
    ./calculator
    ```
+## SCREENSHOT OF THE APP
+![Screenshot From 2025-05-18 21-36-21](https://github.com/user-attachments/assets/04575070-8f37-4da3-ad9d-60443cf8b800)
 
 ## Notes
 

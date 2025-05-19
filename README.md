@@ -20,7 +20,7 @@ A simple calculator application built with C++ and Qt, featuring a custom UI and
 
 2. **Build:**  
    ```bash
-   make
+   make && make clean
    ```
 
 3. **Run:**  

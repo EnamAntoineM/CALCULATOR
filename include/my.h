@@ -12,4 +12,5 @@
     #include "cpp.h"
     #include "alias.h"
     #include "qt.h"
+    #include "QObject"
 #endif

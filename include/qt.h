@@ -59,5 +59,5 @@
     #include <QMimeData>
     #include "qprocess.h"
     #include "QPlainTextEdit"
-    #include "/usr/include/qt/QtQml/QJSEngine"
+    #include "QJSEngine"
 #endif

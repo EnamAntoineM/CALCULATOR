@@ -15,7 +15,7 @@ A simple calculator application built with C++ and Qt, featuring a custom UI and
 ## Build Instructions
 
 1. **Dependencies:**  
-   - Qt5 (Core, Widgets, Gui, Qml)
+   - Qt6 (Core, Widgets, Gui, Qml)
    - C++ compiler (e.g., g++)
 
 2. **Build:**  

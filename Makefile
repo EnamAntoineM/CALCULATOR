@@ -7,14 +7,12 @@
 ## File description:
 #
 
-
-
 # Qt Application Makefile
 
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -I./include $(shell pkg-config --cflags Qt5Core Qt5Widgets Qt5Gui Qt5Qml)
-LDFLAGS = $(shell pkg-config --libs Qt5Core Qt5Widgets Qt5Gui Qt5Qml)
+CXXFLAGS = -fPIC -I./include $(shell pkg-config --cflags Qt6Core Qt6Widgets Qt6Gui Qt6Qml)
+LDFLAGS = $(shell pkg-config --libs Qt6Core Qt6Widgets Qt6Gui Qt6Qml)
 
 # Directories
 SRC_DIR = src
@@ -27,15 +25,17 @@ $(shell mkdir -p $(BUILD_DIR))
 
 # Find all source files
 SOURCES = $(wildcard $(SRC_DIR)/*.cpp)
+
 # Generate object file names
-OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SOURCES))
+OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/src_%.o,$(SOURCES))
 
 # Name of the executable
 TARGET = $(TARGET_DIR)/calculator
 
-# MOC processing for Qt
-MOC = moc
-MOC_HEADERS = $(wildcard $(INCLUDE_DIR)/*.h)
+# MOC processing for Qt - Use Qt6 MOC explicitly
+MOC = /usr/lib/qt6/moc
+# Only process headers that contain Q_OBJECT macro
+MOC_HEADERS = $(shell grep -l "Q_OBJECT" $(INCLUDE_DIR)/*.h 2>/dev/null || true)
 MOC_SOURCES = $(patsubst $(INCLUDE_DIR)/%.h,$(BUILD_DIR)/moc_%.cpp,$(MOC_HEADERS))
 MOC_OBJECTS = $(patsubst $(BUILD_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(MOC_SOURCES))
 
@@ -47,15 +47,15 @@ $(TARGET): $(OBJECTS) $(MOC_OBJECTS)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 # Compile source files
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(BUILD_DIR)/src_%.o: $(SRC_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Generate MOC source files
+# Generate MOC source files with Qt6 MOC
 $(BUILD_DIR)/moc_%.cpp: $(INCLUDE_DIR)/%.h
-	$(MOC) $(CXXFLAGS) $< -o $@
+	$(MOC) $< -o $@
 
 # Compile MOC sources
-$(BUILD_DIR)/%.o: $(BUILD_DIR)/%.cpp
+$(BUILD_DIR)/moc_%.o: $(BUILD_DIR)/moc_%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Clean target (removes only intermediate files)
